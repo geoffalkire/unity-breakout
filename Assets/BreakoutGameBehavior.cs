@@ -5,6 +5,9 @@ public class BreakoutGameBehavior : MonoBehaviour {
 	public Transform BrickPrefab;
 	public Vector2 BrickSetOffset;
 	public float BrickWidth;
+	public float BrickHeight;
+	public int BrickXCount;
+	public int BrickYCount;
 	// Use this for initialization
 	void Start () {
 		InitializeBricks();
@@ -18,10 +21,17 @@ public class BreakoutGameBehavior : MonoBehaviour {
 	private void InitializeBricks()
 	{
 		//create a set of 10 bricks across the top
-		for (var i = 0; i < 10; i++) {
-			var brickInstance = (Transform)Instantiate (BrickPrefab, new Vector3(i * BrickWidth * BrickPrefab.localScale.x + BrickSetOffset.x, BrickSetOffset.y, 0), Quaternion.identity);
-			brickInstance.GetComponent<BrickBehavior>().SetRandomColor();
-				}
+		for (var i = 0; i < BrickXCount; i++) 
+		{
+			for(var j = 0; j < BrickYCount; j++)
+			{
+				Vector3 BrickLocation = new Vector3(i * BrickWidth * BrickPrefab.localScale.x + BrickSetOffset.x,
+				                                    BrickSetOffset.y - j * BrickHeight * BrickPrefab.localScale.y,
+				                                    0);
+				var brickInstance = (Transform)Instantiate (BrickPrefab, BrickLocation, Quaternion.identity);
+				brickInstance.GetComponent<BrickBehavior>().SetRandomColor();
+			}
+		}
 
 	}
 }
