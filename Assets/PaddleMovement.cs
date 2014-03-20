@@ -6,6 +6,17 @@ public class PaddleMovement : MonoBehaviour
 	
 	public float Speed = 10;
 	public float MaxAngle = 75;
+
+	private float Width
+	{
+		get
+		{
+			BoxCollider2D collider = (BoxCollider2D)collider2D;
+			Vector3 transformedSizeVector = collider.size;
+			transformedSizeVector.Scale(transform.localScale);
+			return transformedSizeVector.x;
+		}
+	}
 	// Use this for initialization
 	void Start () {
 	
@@ -30,8 +41,8 @@ public class PaddleMovement : MonoBehaviour
 	{
 		BoxCollider2D collider = (BoxCollider2D)collider2D;
 
-		var relativeXIntersect = ballPosition.x - (transform.position.x + (collider.size.x / 2f));
-		var normalizedRelativeXIntersect = relativeXIntersect / (collider.size.x / 2f);
+		var relativeXIntersect = ballPosition.x - (transform.position.x + (Width / 2f));
+		var normalizedRelativeXIntersect = relativeXIntersect / (Width / 2f);
 
 		var bounceAngle = normalizedRelativeXIntersect * (Mathf.Deg2Rad * MaxAngle);
 
