@@ -8,13 +8,16 @@ public class BreakoutGameBehavior : MonoBehaviour {
 	public float BrickHeight;
 	public int BrickXCount;
 	public int BrickYCount;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		InitializeBricks();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
@@ -29,7 +32,7 @@ public class BreakoutGameBehavior : MonoBehaviour {
 				                                    BrickSetOffset.y - j * BrickHeight * BrickPrefab.localScale.y,
 				                                    0);
 				var brickInstance = (Transform)Instantiate (BrickPrefab, BrickLocation, Quaternion.identity);
-				brickInstance.GetComponent<BrickBehavior>().SetRandomColor();
+				brickInstance.GetComponent<BrickDestruction>().SetRandomColor();
 			}
 		}
 

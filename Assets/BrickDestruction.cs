@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BrickBehavior : MonoBehaviour {
+public class BrickDestruction : MonoBehaviour {
 
 	public List<Sprite> AvailableSprites;
 	// Use this for initialization
