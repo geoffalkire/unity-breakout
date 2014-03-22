@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class MenuBehavior : MonoBehaviour {
-
+	private float _menuOffsetX = Screen.width/2f;
+	private float _menuOffsetY = Screen.height/2f;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,9 +11,17 @@ public class MenuBehavior : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (GUI.Button (new Rect (Screen.width/2f - 40f, Screen.height/2f - 10f, 80, 20), "Play")) 
+		float buttonWidth = 80;
+		float buttonHeight = 20;
+		float margin = 10;
+		if (GUI.Button (new Rect (_menuOffsetX - buttonWidth/2, _menuOffsetY - buttonHeight/2, buttonWidth, buttonHeight), "Play")) 
 		{
 			Application.LoadLevel ("breakoutGame");
+		}
+
+		if (GUI.Button (new Rect (_menuOffsetX - buttonWidth / 2, _menuOffsetY + buttonHeight / 2 + margin, buttonWidth, buttonHeight), "Exit")) 
+		{
+			Application.Quit();
 		}
 	}
 	

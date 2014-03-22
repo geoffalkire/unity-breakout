@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BreakoutGameBehavior : MonoBehaviour {
 	public Transform BrickPrefab;
@@ -37,4 +38,36 @@ public class BreakoutGameBehavior : MonoBehaviour {
 		}
 
 	}
+
+	private float _menuOffsetX = Screen.width/2f;
+	private float _menuOffsetY = Screen.height/2f;
+	private void OnGUI()
+	{
+		if (gameOver) 
+		{
+			float buttonWidth = 80;
+			float buttonHeight = 20;
+			float margin = 10;
+			GUI.Label(new Rect (_menuOffsetX - buttonWidth/2, _menuOffsetY - buttonHeight/2, buttonWidth, buttonHeight), "Game Over");
+		}
+ 
+	}
+	
+	private bool gameOver = false;
+
+	public void GameOver()
+	{
+		gameOver = true;
+		gameObject.BroadcastMessage("EndGame");
+
+		StartCoroutine (WaitAndReturnToTitle());
+
+	}
+
+	IEnumerator WaitAndReturnToTitle()
+	{
+		yield return new WaitForSeconds(2);
+		Application.LoadLevel("titleScreen");
+	}
+
 }

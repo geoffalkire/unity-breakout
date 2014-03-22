@@ -6,6 +6,7 @@ public class PaddleMovement : MonoBehaviour
 	
 	public float Speed = 10;
 	public float MaxAngle = 75;
+	private bool _isGameOver = false;
 
 	private float Width
 	{
@@ -23,8 +24,14 @@ public class PaddleMovement : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		Vector3 mousePositionInScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	void Update () 
+	{
+		if (_isGameOver) return;
+
+		var mousePos = Input.mousePosition;
+		mousePos.z = 10;
+		Vector3 mousePositionInScreen = Camera.main.ScreenToWorldPoint(mousePos);
+
 		transform.position = new Vector3(mousePositionInScreen.x, transform.position.y, transform.position.z);
 	}
 
@@ -48,6 +55,11 @@ public class PaddleMovement : MonoBehaviour
 
 		return new Vector2 (ballSpeed * Mathf.Sin (bounceAngle), ballSpeed * Mathf.Cos (bounceAngle));
 
+	}
+
+	public void EndGame()
+	{
+		_isGameOver = true;
 	}
 
 }

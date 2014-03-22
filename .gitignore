@@ -8,3 +8,5 @@
 *.sln
 *.suo
 *.userprefs
+*.pdb
+*.dll

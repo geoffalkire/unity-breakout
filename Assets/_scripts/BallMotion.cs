@@ -12,6 +12,9 @@ public class BallMotion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//rigidbody2D.AddForce(new Vector2 (0, -1));
+		if (_gameOver) {
+			Destroy (gameObject);
+				}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -24,6 +27,12 @@ public class BallMotion : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x * 1.1f, rigidbody2D.velocity.y * 1.1f);
 		}
 
+	}
+
+	private bool _gameOver= false;
+	public void EndGame()
+	{
+		_gameOver = true;
 	}
 
 
