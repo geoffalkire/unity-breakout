@@ -11,8 +11,8 @@ public class MenuBehavior : MonoBehaviour {
 
 	void OnGUI()
 	{
-		float buttonWidth = 80;
-		float buttonHeight = 20;
+		float buttonWidth = 120;
+		float buttonHeight = 60;
 		float margin = 10;
 		if (GUI.Button (new Rect (_menuOffsetX - buttonWidth/2, _menuOffsetY - buttonHeight/2, buttonWidth, buttonHeight), "Play")) 
 		{
