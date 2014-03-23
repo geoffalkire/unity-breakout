@@ -24,6 +24,7 @@ public class BallMotion : MonoBehaviour {
 
 		if (rigidbody2D.velocity.magnitude < MaxSpeed) 
 		{
+			Debug.Log("Magnitude = " + rigidbody2D.velocity.magnitude);
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x * 1.1f, rigidbody2D.velocity.y * 1.1f);
 		}
 
