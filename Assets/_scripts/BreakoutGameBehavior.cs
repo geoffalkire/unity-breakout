@@ -14,6 +14,9 @@ public class BreakoutGameBehavior : MonoBehaviour {
 	void Start () 
 	{
 		InitializeBricks();
+
+		//setup camera
+		Camera.main.aspect = 16f/9f;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,7 @@ public class BreakoutGameBehavior : MonoBehaviour {
 
 	private void InitializeBricks()
 	{
+		var brickContainer = transform.Find ("BrickContainer");
 		//create a set of 10 bricks across the top
 		for (var i = 0; i < BrickXCount; i++) 
 		{
@@ -34,6 +38,7 @@ public class BreakoutGameBehavior : MonoBehaviour {
 				                                    0);
 				var brickInstance = (Transform)Instantiate (BrickPrefab, BrickLocation, Quaternion.identity);
 				brickInstance.GetComponent<BrickDestruction>().SetRandomColor();
+				brickInstance.parent = brickContainer;
 			}
 		}
 
